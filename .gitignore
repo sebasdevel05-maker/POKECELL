@@ -8,3 +8,4 @@ inventory_data.json
 import_inventory.js
 extract_inventory.py
 .claude/
+backend/db/pos.db

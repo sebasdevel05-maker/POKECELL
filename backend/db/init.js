@@ -119,9 +119,8 @@ async function initDatabase() {
     // Seed default users if none exist
     const { rows } = await client.query('SELECT COUNT(*) as count FROM users');
     if (parseInt(rows[0].count) === 0) {
-      const adminPass = bcrypt.hashSync('lebron2020', 10);
-      const vendedorPass = bcrypt.hashSync('papeluan2026', 10);
-      const karenPass = bcrypt.hashSync('karen2026', 10);
+      const adminPass = bcrypt.hashSync('pokecell2026', 10);
+      const vendedorPass = bcrypt.hashSync('vendedor2026', 10);
 
       await client.query(
         'INSERT INTO users (username, password, name, role) VALUES ($1, $2, $3, $4)',
@@ -131,15 +130,10 @@ async function initDatabase() {
         'INSERT INTO users (username, password, name, role) VALUES ($1, $2, $3, $4)',
         ['vendedor', vendedorPass, 'Vendedor 1', 'vendedor']
       );
-      await client.query(
-        'INSERT INTO users (username, password, name, role) VALUES ($1, $2, $3, $4)',
-        ['karen', karenPass, 'KAREN', 'vendedor']
-      );
 
       console.log('Usuarios por defecto creados:');
-      console.log('  Admin    -> usuario: admin     | clave: lebron2020');
-      console.log('  Vendedor -> usuario: vendedor  | clave: papeluan2026');
-      console.log('  Karen    -> usuario: karen     | clave: karen2026');
+      console.log('  Admin    -> usuario: admin     | clave: pokecell2026');
+      console.log('  Vendedor -> usuario: vendedor  | clave: vendedor2026');
     }
   } finally {
     client.release();
