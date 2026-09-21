@@ -1,10 +1,10 @@
 @echo off
-title Sistema POS - PAPELUAN
+title Sistema POS - POKECELL
 color 0A
 
 echo.
 echo  =============================================
-echo       SISTEMA POS - PAPELUAN
+echo       SISTEMA POS - POKECELL
 echo  =============================================
 echo.
 

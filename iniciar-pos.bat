@@ -1,8 +1,8 @@
 @echo off
-title PAPELUAN POS - Servidor
+title POKECELL POS - Servidor
 cd /d "%~dp0"
 echo ========================================
-echo   PAPELUAN POS - Servidor Local
+echo   POKECELL POS - Servidor Local
 echo ========================================
 echo.
 echo NO CIERRE ESTA VENTANA

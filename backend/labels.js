@@ -34,7 +34,7 @@ function generateLabels(products, res) {
       const usable = LABEL_W - 8;
 
       doc.fontSize(6).font('Helvetica-Bold')
-        .text('PAPELUAN', 4, 4, { width: usable, align: 'center' });
+        .text('POKECELL', 4, 4, { width: usable, align: 'center' });
 
       const name = item.name.length > 28 ? item.name.substring(0, 28) + '...' : item.name;
       doc.fontSize(5.5).font('Helvetica')
@@ -72,7 +72,7 @@ function generateTSPL(products) {
       tspl += 'GAP 2 mm, 0 mm\r\n';
       tspl += 'DIRECTION 0,0\r\n';
       tspl += 'CLS\r\n';
-      tspl += `TEXT 85,25,"4",0,1,1,"PAPELUAN"\r\n`;
+      tspl += `TEXT 85,25,"4",0,1,1,"POKECELL"\r\n`;
       tspl += `TEXT 10,62,"3",0,1,1,"${name}"\r\n`;
       tspl += `BARCODE 15,92,"128",40,0,0,2,2,"${barcode}"\r\n`;
       tspl += `TEXT 55,138,"2",0,1,1,"${item.barcode}"\r\n`;

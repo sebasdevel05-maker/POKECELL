@@ -1,10 +1,10 @@
 @echo off
-title Sistema POS - PAPELUAN (Acceso Remoto)
+title Sistema POS - POKECELL (Acceso Remoto)
 color 0B
 
 echo.
 echo  =============================================
-echo   SISTEMA POS - PAPELUAN (ACCESO REMOTO)
+echo   SISTEMA POS - POKECELL (ACCESO REMOTO)
 echo  =============================================
 echo.
 

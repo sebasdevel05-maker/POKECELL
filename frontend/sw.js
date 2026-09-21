@@ -1,4 +1,4 @@
-const CACHE_NAME = 'papeluan-v1';
+const CACHE_NAME = 'pokecell-v1';
 const STATIC_ASSETS = [
   '/',
   '/vendedor.html',

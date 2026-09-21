@@ -1,7 +1,7 @@
 {
-  "name": "PAPELUAN - Punto de Venta",
-  "short_name": "PAPELUAN",
-  "description": "Sistema POS para PAPELUAN",
+  "name": "POKECELL - Punto de Venta",
+  "short_name": "POKECELL",
+  "description": "Sistema POS para POKECELL Accesorios",
   "start_url": "/",
   "display": "standalone",
   "orientation": "any",

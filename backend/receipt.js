@@ -5,7 +5,7 @@ function generateReceipt(sale) {
   let body = '';
 
   // Header
-  body += centerText(y, '4', 'PAPELUAN'); y += 38;
+  body += centerText(y, '4', 'POKECELL'); y += 38;
   body += centerText(y, '2', 'Sistema POS'); y += 28;
   body += sep(y); y += 18;
 
@@ -58,7 +58,7 @@ function generateReceipt(sale) {
 
   // Footer
   body += centerText(y, '2', 'Gracias por su compra!'); y += 24;
-  body += centerText(y, '3', 'PAPELUAN'); y += 20;
+  body += centerText(y, '3', 'POKECELL'); y += 20;
 
   // Calculate height in mm (y dots / 8 dots per mm) + small margin
   const heightMm = Math.ceil(y / 8) + 3;

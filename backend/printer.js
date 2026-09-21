@@ -38,7 +38,7 @@ public class LabelPrinter {
     public static bool SendRaw(string printerName, byte[] data) {
         IntPtr hPrinter;
         if (!OpenPrinter(printerName, out hPrinter, IntPtr.Zero)) return false;
-        DOCINFOA di = new DOCINFOA() { pDocName = "PAPELUAN Labels", pDataType = "RAW" };
+        DOCINFOA di = new DOCINFOA() { pDocName = "POKECELL Labels", pDataType = "RAW" };
         StartDocPrinter(hPrinter, 1, di);
         StartPagePrinter(hPrinter);
         IntPtr p = Marshal.AllocCoTaskMem(data.Length);

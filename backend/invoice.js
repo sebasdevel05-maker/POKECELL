@@ -5,9 +5,9 @@ function generateInvoicePDF(sale, stream) {
   doc.pipe(stream);
 
   // Header
-  doc.fontSize(24).font('Helvetica-Bold').text('PAPELUAN', { align: 'center' });
+  doc.fontSize(24).font('Helvetica-Bold').text('POKECELL', { align: 'center' });
   doc.moveDown(0.2);
-  doc.fontSize(10).font('Helvetica').text('Papeleria y Variedades', { align: 'center' });
+  doc.fontSize(10).font('Helvetica').text('Accesorios', { align: 'center' });
   doc.moveDown(0.3);
   doc.fontSize(16).font('Helvetica-Bold').fillColor('#0d9488').text('FACTURA DE VENTA', { align: 'center' });
   doc.fillColor('#000000');
@@ -112,7 +112,7 @@ function generateInvoicePDF(sale, stream) {
   doc.moveDown(5);
   doc.font('Helvetica').fontSize(8).fillColor('#94a3b8');
   doc.text('Gracias por su compra. Este documento es su comprobante de venta.', 50, doc.y, { align: 'center' });
-  doc.text('PAPELUAN - Sistema POS', 50, doc.y + 12, { align: 'center' });
+  doc.text('POKECELL - Sistema POS', 50, doc.y + 12, { align: 'center' });
 
   doc.end();
 }
