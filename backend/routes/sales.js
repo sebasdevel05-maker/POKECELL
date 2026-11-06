@@ -112,13 +112,7 @@ router.post('/', authMiddleware, async (req, res) => {
       created_at: localTimestamp
     };
 
-    try {
-      const receipt = generateReceipt(saleData);
-      printRaw(receipt).catch(err => console.error('Error imprimiendo recibo:', err.message));
-    } catch (err) {
-      console.error('Error generando recibo:', err.message);
-    }
-
+    // La factura se imprime desde el navegador (frontend/js/print.js) si el vendedor lo elige.
     res.status(201).json(saleData);
   } catch (err) {
     try { await client.query('ROLLBACK'); } catch (e) {}

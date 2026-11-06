@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pokecell-v1';
+const CACHE_NAME = 'pokecell-v2';
 const STATIC_ASSETS = [
   '/',
   '/vendedor.html',
@@ -7,6 +7,8 @@ const STATIC_ASSETS = [
   '/css/styles.css',
   '/js/api.js',
   '/js/quagga.min.js',
+  '/js/JsBarcode.all.min.js',
+  '/js/print.js',
   '/manifest.json',
   '/icons/icon-192.png',
   '/icons/icon-512.png'

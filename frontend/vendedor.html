@@ -172,6 +172,8 @@
   <div id="toast-container" class="toast-container"></div>
 
   <script src="/js/api.js"></script>
+  <script src="/js/JsBarcode.all.min.js"></script>
+  <script src="/js/print.js"></script>
   <script>
     const currentUser = requireAuth('vendedor');
     if (!currentUser) throw new Error('redirect');
@@ -362,6 +364,10 @@
         product_id: item.product_id,
         quantity: item.quantity
       }));
+      const cartTotal = cart.reduce((s, i) => s + i.sale_price * i.quantity, 0);
+
+      const wantPrint = await PosPrint.askPrintInvoice(cartTotal);
+      if (wantPrint === null) return;
 
       try {
         document.getElementById('btnFinalize').disabled = true;
@@ -378,8 +384,7 @@
 
         showToast(`Venta ${sale.invoice_number} - Total: $${sale.total.toFixed(2)}`, 'success');
 
-        const token = getToken();
-        window.open(`/api/sales/${sale.id}/invoice?token=${token}`, '_blank');
+        if (wantPrint) PosPrint.printReceipt(sale);
 
         cart = [];
         document.getElementById('customerName').value = '';

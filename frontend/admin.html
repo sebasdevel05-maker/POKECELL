@@ -424,7 +424,7 @@
       <div style="display: flex; gap: 0.5rem; margin-top: 1rem; align-items: center;">
         <span id="labelTotalCount" style="font-size: 0.85rem; color: var(--text-muted); flex: 1;">0 etiquetas</span>
         <button class="btn btn-secondary" onclick="selectAllForLabels()">Seleccionar Todo</button>
-        <button class="btn btn-primary" onclick="printLabels()">Imprimir Directo</button>
+        <button class="btn btn-primary" onclick="printLabels()">Imprimir</button>
       </div>
     </div>
   </div>
@@ -432,6 +432,8 @@
   <div id="toast-container" class="toast-container"></div>
 
   <script src="/js/api.js"></script>
+  <script src="/js/JsBarcode.all.min.js"></script>
+  <script src="/js/print.js"></script>
   <script>
     const currentUser = requireAuth('admin');
     if (!currentUser) throw new Error('redirect');
@@ -1131,6 +1133,10 @@
       if (posCart.length === 0) return;
       const customerName = document.getElementById('posCustomerName').value.trim() || 'Cliente General';
       const items = posCart.map(i => ({ product_id: i.product_id, quantity: i.quantity }));
+      const cartTotal = posCart.reduce((s, i) => s + i.sale_price * i.quantity, 0);
+
+      const wantPrint = await PosPrint.askPrintInvoice(cartTotal);
+      if (wantPrint === null) return;
 
       try {
         document.getElementById('posBtnFinalize').disabled = true;
@@ -1139,6 +1145,7 @@
           body: JSON.stringify({ customer_name: customerName, items, payment_method: posPayment, discount_percent: 0 })
         });
         showToast(`Venta ${sale.invoice_number} - Total: $${sale.total.toFixed(0)}`, 'success');
+        if (wantPrint) PosPrint.printReceipt(sale);
 
         posCart = [];
         document.getElementById('posCustomerName').value = '';
@@ -1246,17 +1253,16 @@
     async function printLabels() {
       if (labelItems.length === 0) { showToast('Seleccione al menos un producto', 'error'); return; }
 
-      const totalLabels = labelItems.reduce((sum, i) => sum + i.quantity, 0);
-      if (!confirm(`Imprimir ${totalLabels} etiqueta(s) directo a la impresora?`)) return;
+      const items = labelItems.map(i => {
+        const p = allProducts.find(p => p.id === i.product_id) || {};
+        return { name: i.name, barcode: i.barcode, sale_price: parseFloat(p.sale_price) || 0, quantity: i.quantity };
+      });
+      const totalLabels = items.reduce((sum, i) => sum + i.quantity, 0);
 
       try {
-        const data = await api('/products/labels/print', {
-          method: 'POST',
-          body: JSON.stringify({ items: labelItems.map(i => ({ product_id: i.product_id, quantity: i.quantity })) }),
-        });
-
+        PosPrint.printLabels(items);
         closeModal('labelModal');
-        showToast(data.message, 'success');
+        showToast(`${totalLabels} etiqueta(s) listas: elija la impresora 4BARCODE`, 'success');
       } catch (err) {
         showToast('Error: ' + err.message, 'error');
       }
